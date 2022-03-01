@@ -5,8 +5,8 @@ import { useMemo } from "react";
 import { Layout } from "../../components/Layout";
 import { fetchApp, fetchArticles, fetchCurrentArticle } from "../../lib/api";
 import { formatDate } from "../../lib/date";
-import { renderToHtml, renderToPlainText } from "../../lib/markdown";
 import { Article } from "../../types/article";
+import { htmlToText } from "html-to-text";
 
 export default function ArticlePage({
   app,
@@ -37,7 +37,9 @@ export default function ArticlePage({
       return meta.description;
     }
     if (currentArticle?.body) {
-      return renderToPlainText(currentArticle.body).slice(0, 200);
+      return htmlToText(currentArticle.body, {
+        selectors: [{ selector: "img", format: "skip" }],
+      }).slice(0, 200);
     }
     return "";
   }, [app, meta, currentArticle?.body]);
@@ -55,24 +57,13 @@ export default function ArticlePage({
   const body = useMemo(() => {
     if (currentArticle?.body) {
       return {
-        __html: renderToHtml(currentArticle.body),
+        __html: currentArticle.body,
       };
     }
     return {
       __html: "",
     };
   }, [currentArticle?.body]);
-
-  const authorIntroduction = useMemo(() => {
-    if (currentArticle?.author?.introduction) {
-      return {
-        __html: renderToHtml(currentArticle.author.introduction),
-      };
-    }
-    return {
-      __html: "",
-    };
-  }, [currentArticle?.author?.introduction]);
 
   return (
     <Layout app={app}>

@@ -55,9 +55,6 @@ export const fetchArticles = async (options?: {
   if (category) {
     _query.categories = category;
   }
-  if (format === "text") {
-    _query.body = { fmt: "text" };
-  }
   const _page = page || 1;
   const _limit = limit || Number(process.env.NEXT_PUBLIC_PAGE_LIMIT) || 10;
   const _skip = (_page - 1) * _limit;
@@ -100,7 +97,6 @@ export const fetchCurrentArticle = async (options: { slug: string }) => {
       depth: 2,
       limit: 1,
       slug,
-      body: { fmt: "text" },
     },
   });
   return items[0] || null;

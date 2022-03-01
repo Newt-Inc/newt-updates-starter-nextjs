@@ -6,8 +6,8 @@ import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
 import { Layout } from "../../components/Layout";
 import { fetchApp, fetchArticles } from "../../lib/api";
-import { renderToPlainText } from "../../lib/markdown";
 import { Article } from "../../types/article";
+import { htmlToText } from "html-to-text";
 
 export default function Search({ app }: { app: AppMeta }) {
   const router = useRouter();
@@ -56,7 +56,9 @@ export default function Search({ app }: { app: AppMeta }) {
                   <a href="#" className={styles.Article_Link}>
                     <h1 className={styles.Article_Title}>{article.title}</h1>
                     <p className={styles.Article_Description}>
-                      {renderToPlainText(article.body)}
+                      {htmlToText(article.body, {
+                        selectors: [{ selector: "img", format: "skip" }],
+                      })}
                     </p>
                   </a>
                 </Link>
