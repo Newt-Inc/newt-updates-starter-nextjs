@@ -3,7 +3,7 @@ import { Article } from "../types/article";
 import { Category } from "../types/category";
 
 const client = createClient({
-  projectUid: process.env.NEXT_PUBLIC_NEWT_PROJECT_UID,
+  spaceUid: process.env.NEXT_PUBLIC_NEWT_SPACE_UID,
   token: process.env.NEXT_PUBLIC_NEWT_API_TOKEN,
   apiType: process.env.NEXT_PUBLIC_NEWT_API_TYPE as "cdn" | "api",
 });

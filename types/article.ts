@@ -13,5 +13,5 @@ export interface Article {
   body: string;
   coverImage: { src: string } | null;
   author: (Content & Author) | null;
-  category: (Content & Category)[];
+  categories: (Content & Category)[];
 }

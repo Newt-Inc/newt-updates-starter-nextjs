@@ -33,11 +33,9 @@ export function Home({
       {app.cover?.value && <Cover app={app} />}
       <div className={styles.Articles}>
         <Dropdown categories={categories} selected={categorySlug} />
-        <div className={styles.Inner}>
-          {articles.map((article) => (
-            <ArticleCard article={article} key={article._id} />
-          ))}
-        </div>
+        {articles.map((article) => (
+          <ArticleCard article={article} key={article._id} />
+        ))}
         <Pagination
           total={total}
           current={page}

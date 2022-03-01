@@ -8,9 +8,7 @@ function Error({ statusCode }) {
       {statusCode === 404 ? (
         <h1>Page not found</h1>
       ) : (
-        <h1 v-else className={styles.Error_Message}>
-          An error occurred
-        </h1>
+        <h1 className={styles.Error_Message}>An error occurred</h1>
       )}
       <Link href="/" className={styles.Error_Link}>
         Back to the home page

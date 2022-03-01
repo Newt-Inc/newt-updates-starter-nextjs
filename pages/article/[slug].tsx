@@ -81,8 +81,22 @@ export default function ArticlePage({
         <meta name="description" content={description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <article v-if="currentArticle" className={styles.Article}>
+      <article className={styles.Article}>
         <div className={styles.Article_Header}>
+          <ul className={styles.Article_Tags}>
+            {currentArticle?.categories.map((category) => (
+              <li
+                key={category._id}
+                style={
+                  category.colorCode ? { background: category.colorCode } : {}
+                }
+                className={styles.Article_Tag}
+              >
+                {category.emoji?.value && <span>{category.emoji.value}</span>}
+                <strong>{category.name}</strong>
+              </li>
+            ))}
+          </ul>
           <h1 className={styles.Article_Title}>
             {currentArticle?.title || ""}
           </h1>
@@ -121,36 +135,6 @@ export default function ArticlePage({
           className={styles.Article_Body}
           dangerouslySetInnerHTML={body}
         ></div>
-        <aside className={styles.Author}>
-          <div className={styles.Author_Avatar}>
-            {currentArticle?.author?.profileImage ? (
-              <img
-                src={currentArticle.author.profileImage.src}
-                alt=""
-                width="48"
-                height="48"
-              />
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="28px"
-                height="28px"
-                viewBox="0 0 24 24"
-                fill="#CCCCCC"
-              >
-                <path d="M0 0h24v24H0V0z" fill="none" />
-                <path d="M12 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2m0 10c2.7 0 5.8 1.29 6 2H6c.23-.72 3.31-2 6-2m0-12C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 10c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-              </svg>
-            )}
-          </div>
-          <div className={styles.Author_Text}>
-            <div className={styles.Author_Name}>{authorName}</div>
-            <div
-              className={styles.Author_Description}
-              dangerouslySetInnerHTML={authorIntroduction}
-            ></div>
-          </div>
-        </aside>
       </article>
     </Layout>
   );

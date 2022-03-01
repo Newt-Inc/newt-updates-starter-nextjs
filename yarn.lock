@@ -245,10 +245,10 @@ nanoid@^3.1.30:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.1.tgz#6347a18cac88af88f58af0b3594b723d5e99bb35"
   integrity sha512-n6Vs/3KGyxPQd6uO0eH4Bv0ojGSUvuLlIHtC3Y0kEO23YRge8H9x1GCzLn28YX0H66pMkxuaeESFq4tKISKwdw==
 
-newt-client-js@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/newt-client-js/-/newt-client-js-1.2.3.tgz#40e34c85c45f1efce80928114fa9681c02ad2fd3"
-  integrity sha512-W8qqHLH8R8qlYEdPkpII9Q0zTsau/hREq3wycXNsV0eWbFnr2nKp4zYQ/jDL3lSTT3PfjWZom8TcD98YMJESzQ==
+newt-client-js@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/newt-client-js/-/newt-client-js-2.0.1.tgz#421ea262cc1e63c0629231287cdae8cc2107a080"
+  integrity sha512-PywUNiYQa0n/T9Azujf7IHzcDsJhoZzhzZsPmkISwPoIUjQ9YIErzaFnRsWyud6RGm8y7j6IQL0AX9JZ/vUR/A==
   dependencies:
     axios "^0.25.0"
     axios-retry "^3.2.4"

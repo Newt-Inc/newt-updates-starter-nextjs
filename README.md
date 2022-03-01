@@ -7,14 +7,14 @@
 Newt's starter
 </h3>
 <p align="center">
-  <a href="https://demo-newt-blog-starter-nextjs.vercel.app/">Demo</a> | <a href="https://www.newt.so/">Newt</a>
+  <a href="https://demo-newt-updates-starter-nextjs.vercel.app/">Demo</a> | <a href="https://www.newt.so/">Newt</a>
 </p>
 
 ## 概要
 
-**newt-blog-starter-nuxtjs**
-<br />Newtを利用した1カラムのシンプルなブログ
-<br />技術構成： Next.js, TypeScript
+**updates-starter-nuxtjs**
+<br />Newtを利用したアップデートノート
+<br />技術構成：Next.js, TypeScript
 
 ## 開発をはじめる
 
@@ -23,7 +23,7 @@ Newt's starter
 1. スペースを作成します
     - スペースUIDを控えておきましょう。スペースUIDは 管理画面URL（ `https://app.newt.so/{スペースUID}` ） もしくは スペース設定 > 一般 から確認できます。
 2. Appを作成します
-    - Appテンプレートから作成する場合、**Blog**を選択し「このテンプレートを追加」をクリックしてください。
+    - Appテンプレートから作成する場合、**Updates**を選択し「このテンプレートを追加」をクリックしてください。
     - スクラッチで作成する場合は、App名とAppUIDを設定して次のステップに進みます。
     - AppUIDを控えておきましょう。AppUIDは管理画面URL（ `https://app.newt.so/{スペースUID}/app/{AppUID}` ） または App設定 > 一般 から確認できます。
 3. App設定から、Articleモデル, Categoryモデル, Authorモデルを作成します
@@ -32,13 +32,14 @@ Newt's starter
 4. スペース設定 > APIキー からCDN APIトークンを作成します
     - スペース設定 > APIキー よりCDN APIトークンを作成します
     - 複製マークをクリックしてトークンをコピーしましょう
+
 ### Step2: .envファイルを書き換える
 
-1. Step1で取得したプロジェクトUID, AppUID, CDN APIトークンで環境変数を書き換えます
+1. Step1で取得したスペースUID, AppUID, CDN APIトークンで環境変数を書き換えます
 
-.envファイルのプロジェクトUID, AppUID, CDN APIトークンを実際の値で書き換えます
+.envファイルのスペースUID, AppUID, CDN APIトークンを実際の値で書き換えます
 ```conf
-NEXT_PUBLIC_NEWT_PROJECT_UID=プロジェクトUID
+NEXT_PUBLIC_NEWT_SPACE_UID=スペースID
 NEXT_PUBLIC_NEWT_APP_UID=AppUID
 NEXT_PUBLIC_NEWT_API_TOKEN=CDN APIトークン
 NEXT_PUBLIC_NEWT_API_TYPE=cdn
@@ -80,23 +81,22 @@ $ yarn build
 $ yarn start
 ```
 
-## Newtプロジェクトの構成
+## Newtスペースの構成
 
-`Blog` appの中にArticle, Category, Authorの3つのモデルを作ります。
+`Updates` appの中にArticle, Category, Authorの3つのモデルを作ります。
 
 | App名（任意） | モデル名（モデルUID） |
 | --- | --- |
-| Blog | Article (`article`) |
+| Updates | Article (`article`) |
 |  | Category (`category`) |
 |  | Author (`author`) |
 
 ### Article（`uid: article`）モデル
 
-| フィールドID | フィールド名 | フィールドID	フィールド名 | フィールドID	フィールド名 |
+| フィールドID | フィールド名 | フィールドタイプ | オプション |
 | --- | --- | --- | --- |
 | title | タイトル | テキスト | 必須フィールド, このフィールドをタイトルに使う |
 | slug | スラッグ | テキスト | 必須フィールド |
-| meta | メタ情報 | カスタムフィールド | |
 | coverImage | カバー画像 | 画像 |  |
 | body | 本文 | Markdown or リッチテキスト |  |
 | category | カテゴリ | 参照（Categoryモデル） | 複数値 |
@@ -104,14 +104,16 @@ $ yarn start
 
 ### Category（`uid: category`）モデル
 
-| フィールドID | フィールド名 | フィールドID	フィールド名 | フィールドID	フィールド名 |
+| フィールドID | フィールド名 | フィールドタイプ | オプション |
 | --- | --- | --- | --- |
 | name | 名前 | テキスト | 必須フィールド, このフィールドをタイトルに使う |
 | slug | スラッグ | テキスト | 必須フィールド |
+| emoji | 絵文字 | 絵文字 |  |
+| colorCode | 色コード | カラー |  |
 
 ### Author（`uid: author`）モデル
 
-| フィールドID | フィールド名 | フィールドID	フィールド名 | フィールドID	フィールド名 |
+| フィールドID | フィールド名 | フィールドタイプ | オプション |
 | --- | --- | --- | --- |
 | fullName | 名前 | テキスト | 必須フィールド, このフィールドをタイトルに使う |
 | profileImage | スラッグ | 画像 |  |
