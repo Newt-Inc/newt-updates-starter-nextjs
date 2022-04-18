@@ -52,7 +52,7 @@ export default function ArticlePage({
       return currentArticle.author.profileImage.src;
     }
     return "";
-  }, [meta, currentArticle?.title]);
+  }, [meta, currentArticle?.author?.profileImage?.src]);
 
   const authorName = useMemo(() => {
     return currentArticle?.author?.fullName || "NO NAME";
